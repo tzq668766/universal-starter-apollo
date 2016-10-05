@@ -1,5 +1,6 @@
 // the polyfills must be the first thing imported in node.js
 import 'angular2-universal-polyfills';
+import 'isomorphic-fetch';
 
 import * as path from 'path';
 import * as express from 'express';
@@ -13,6 +14,7 @@ import { createEngine } from 'angular2-express-engine';
 
 // App
 import { MainModule } from './main.node';
+import { GraphQL, GraphiQL } from './backend/graphql';
 
 // enable prod for faster renders
 enableProdMode();
@@ -55,6 +57,9 @@ app.get('/about', ngApp);
 app.get('/about/*', ngApp);
 app.get('/home', ngApp);
 app.get('/home/*', ngApp);
+
+app.use('/graphql', bodyParser.json(), GraphQL());
+app.use('/graphiql', GraphiQL());
 
 
 app.get('*', function(req, res) {

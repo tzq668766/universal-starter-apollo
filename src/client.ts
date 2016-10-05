@@ -1,5 +1,6 @@
 // the polyfills must be the first thing imported
 import 'angular2-universal-polyfills';
+import 'isomorphic-fetch';
 
 // Angular 2
 import { enableProdMode} from '@angular/core';
